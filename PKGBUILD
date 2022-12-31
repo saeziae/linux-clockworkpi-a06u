@@ -4,10 +4,10 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 
 pkgbase=linux-clockworkpi-a06
-_srcname=linux-6.0
+_srcname=linux-6.1
 _kernelname=${pkgbase#linux}
 _desc="Kernel for ClockworkPI A06"
-pkgver=6.0.9
+pkgver=6.1.2
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -16,8 +16,6 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         "http://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
-        '0001-net-smsc95xx-Allow-mac-address-to-be-set-as-a-parame.patch'
-        '0023-drm-rockchip-support-gamma-control-on-RK3399.patch' # From list: https://patchwork.kernel.org/project/linux-arm-kernel/cover/20211019215843.42718-1-sigmaris@gmail.com/
         '0001-arm64-dts-clockworkpi-a06-dts.patch' # Potentially upstreamable, needs cleanup
         '0002-mfd-axp20x-add-clockworkpi-a06-power-support.patch' # Looks potentially incorrect. Probably not upstreamable
         '0004-gpu-drm-panel-add-cwd686-driver.patch' # Potentially upstreamable, needs cleanup
@@ -26,10 +24,8 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('d681bd1d62d48049a4874646f6774d92'
-         '2ca06d7252389d7f589cd4b136925562'
-         '9e6b7f44db105fef525d715213dce7cf'
-         'e2f08e3bc6d1b36e7000233abab1bfc7'
+md5sums=('475320de08f16c9fa486fc4edfe98b30'
+         '41f9ae96a32c4598793975d24818fdd4'
          'dc6cb17e3c05f38fda8e52abadd2ec34'
          '3ce64f0b521cde07eeb82683a55663a0'
          'f2577b39b1eda4a18b9111775843f83b'
@@ -44,12 +40,6 @@ prepare() {
 
   # add upstream patch
   patch -Np1 -i "${srcdir}/patch-${pkgver}"
-
-  # ALARM patches
-  #patch -Np1 -i "${srcdir}/0001-net-smsc95xx-Allow-mac-address-to-be-set-as-a-parame.patch"             #All
-  
-  # Manjaro ARM Patches
-  patch -Np1 -i "${srcdir}/0023-drm-rockchip-support-gamma-control-on-RK3399.patch"                     #RK3399
   
   # ClockworkPI DevTerm A06 patches
   patch -Np1 -i "${srcdir}/0001-arm64-dts-clockworkpi-a06-dts.patch"                    # DTS

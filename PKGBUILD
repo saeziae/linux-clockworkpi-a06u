@@ -26,9 +26,9 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '90-linux.hook')
 md5sums=('475320de08f16c9fa486fc4edfe98b30'
          'd2ee3819bb89c097820e2f94bc6a29c9'
-         'dc6cb17e3c05f38fda8e52abadd2ec34'
+         '2afbb329db828d2e58918901d6e5d5c0'
          '3ce64f0b521cde07eeb82683a55663a0'
-         'f2577b39b1eda4a18b9111775843f83b'
+         '6c33c2ca94f39c603ebca4e7901df846'
          '3203d018422505068fc22b909df871aa'
          '56e8c47e84feddbd870ad56e4ce00ebf'
          '86d4a35722b5410e3b29fc92dae15d4b'

@@ -7,7 +7,7 @@ pkgbase=linux-clockworkpi-a06
 _srcname=linux-6.1
 _kernelname=${pkgbase#linux}
 _desc="Kernel for ClockworkPI A06"
-pkgver=6.1.8
+pkgver=6.1.9
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -25,12 +25,12 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '60-linux.hook'
         '90-linux.hook')
 md5sums=('475320de08f16c9fa486fc4edfe98b30'
-         '73819a74f7a811f76ab1b12fdbe5bc84'
+         '14bc8ed6e48750bb48ee534173abbfcd'
          '2afbb329db828d2e58918901d6e5d5c0'
          '3ce64f0b521cde07eeb82683a55663a0'
          '6c33c2ca94f39c603ebca4e7901df846'
          '3203d018422505068fc22b909df871aa'
-         '56e8c47e84feddbd870ad56e4ce00ebf'
+         '27e089de712cf872b4236dfa0c1608de'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')

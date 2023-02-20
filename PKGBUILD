@@ -4,10 +4,10 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 
 pkgbase=linux-clockworkpi-a06
-_srcname=linux-6.1
+_srcname=linux-6.2
 _kernelname=${pkgbase#linux}
 _desc="Kernel for ClockworkPI A06"
-pkgver=6.1.11
+pkgver=6.2.0
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -15,7 +15,7 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
 source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
-        "http://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
+        #"http://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
         '0001-arm64-dts-clockworkpi-a06-dts.patch' # Potentially upstreamable, needs cleanup
         '0002-mfd-axp20x-add-clockworkpi-a06-power-support.patch' # Looks potentially incorrect. Probably not upstreamable
         '0004-gpu-drm-panel-add-cwd686-driver.patch' # Potentially upstreamable, needs cleanup
@@ -24,8 +24,7 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('475320de08f16c9fa486fc4edfe98b30'
-         '3398001c2a38219ab6e355c552e62830'
+md5sums=('787862593d7bf354cf1a5c37e21fc147'
          '2afbb329db828d2e58918901d6e5d5c0'
          '3ce64f0b521cde07eeb82683a55663a0'
          '6c33c2ca94f39c603ebca4e7901df846'
@@ -39,7 +38,7 @@ prepare() {
   cd ${_srcname}
 
   # add upstream patch
-  patch -Np1 -i "${srcdir}/patch-${pkgver}"
+  #patch -Np1 -i "${srcdir}/patch-${pkgver}"
   
   # ClockworkPI DevTerm A06 patches
   patch -Np1 -i "${srcdir}/0001-arm64-dts-clockworkpi-a06-dts.patch"                    # DTS

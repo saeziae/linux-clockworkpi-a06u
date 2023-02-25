@@ -27,7 +27,7 @@ package:
     # build pkg via chrootbuild
     - export PKG=${PWD##*/}
     - cd ..
-    - sudo chrootbuild -cp $PKG
+    - sudo chrootbuild -cfp $PKG
     - mv -v ./*.pkg.tar.* $PKG
   artifacts:
     paths:

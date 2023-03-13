@@ -7,7 +7,7 @@ pkgbase=linux-clockworkpi-a06
 _srcname=linux-6.2
 _kernelname=${pkgbase#linux}
 _desc="Kernel for ClockworkPI A06"
-pkgver=6.2.5
+pkgver=6.2.6
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -20,18 +20,16 @@ source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
         '0002-mfd-axp20x-add-clockworkpi-a06-power-support.patch' # Looks potentially incorrect. Probably not upstreamable
         '0004-gpu-drm-panel-add-cwd686-driver.patch' # Potentially upstreamable, needs cleanup
         '0005-video-backlight-add-ocp8178-driver.patch' # Potentially upstreamable, needs cleanup
-        '0006-wifi-cfg80211-Partial-revert-wifi-cfg80211-Fix-use-after-free-for-wext.patch' #Wifi
         'config'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
 md5sums=('787862593d7bf354cf1a5c37e21fc147'
-         '92c45474c88c178daead199c0be39c03'
+         '10c159b30d45030114bc5bec009a7f39'
          '2afbb329db828d2e58918901d6e5d5c0'
          '3ce64f0b521cde07eeb82683a55663a0'
          '6c33c2ca94f39c603ebca4e7901df846'
          '3203d018422505068fc22b909df871aa'
-         '367931fb54eb998b74f97a9b6a3438d9'
          'c4c192ee6f72a33e790005e3a55907ff'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'

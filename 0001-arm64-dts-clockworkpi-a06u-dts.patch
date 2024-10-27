@@ -7,15 +7,15 @@ index 67e09e88f..5212a625f 100644
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-px5-evb.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-r88.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-eaidk-610.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-clockworkpi-a06.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-clockworkpi-a06u.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-evb.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-ficus.dtb
  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-firefly.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06.dts b/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06.dts
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06u.dts b/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06u.dts
 new file mode 100644
 index 000000000..1c8fb451a
 --- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06.dts	2021-12-05 20:46:08.851233995 -0600
++++ b/arch/arm64/boot/dts/rockchip/rk3399-clockworkpi-a06u.dts	2021-12-05 20:46:08.851233995 -0600
 @@ -0,0 +1,1012 @@
 +/*
 + * SPDX-License-Identifier: (GPL-2.0+ or MIT)
@@ -35,8 +35,8 @@ index 000000000..1c8fb451a
 +#include "rk3399-opp.dtsi"
 +
 +/ {
-+	model = "Clockworkpi A06";
-+	compatible = "clockwork,devterm-a06", "rockchip,rk3399";
++	model = "Clockworkpi a06u";
++	compatible = "clockwork,uconsole-a06", "rockchip,rk3399";
 +
 +	chosen {
 +		stdout-path = "serial2:1500000n8";
@@ -347,7 +347,7 @@ index 000000000..1c8fb451a
 +	};
 +
 +	dsi_panel: panel {
-+		compatible = "cw,cwd686";
++		compatible = "cw,cwu50";
 +		reg = <0>;
 +		backlight = <&ocp8178_backlight>;
 +		reset-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;

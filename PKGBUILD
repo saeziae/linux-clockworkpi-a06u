@@ -1,36 +1,37 @@
+# ClockworkPI uConsole A06
+# Maintainer: Estela ad Astra <i@estela.moe>
+# based on original work for Devterm:
 # ClockworkPI A06 (based on linux)
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Contributor: Max Fierke <max@maxfierke.com>
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 
-pkgbase=linux-clockworkpi-a06
-_srcname=linux-6.2
+pkgbase=linux-clockworkpi-a06u
 _kernelname=${pkgbase#linux}
-_desc="Kernel for ClockworkPI A06"
-pkgver=6.2.7
+_desc="Kernel for ClockworkPI uConsole A06"
+pkgver=6.1.111
+_srcname=linux-${pkgver}
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git' 'dtc')
 options=('!strip')
-source=("http://www.kernel.org/pub/linux/kernel/v6.x/${_srcname}.tar.xz"
-        "http://www.kernel.org/pub/linux/kernel/v6.x/patch-${pkgver}.xz"
-        '0001-arm64-dts-clockworkpi-a06-dts.patch' # Potentially upstreamable, needs cleanup
+source=("http://www.kernel.org/pub/linux/kernel/v6.x/linux-${pkgver}.tar.xz"
+        '0001-arm64-dts-clockworkpi-a06u-dts.patch' # Potentially upstreamable, needs cleanup
         '0002-mfd-axp20x-add-clockworkpi-a06-power-support.patch' # Looks potentially incorrect. Probably not upstreamable
-        '0004-gpu-drm-panel-add-cwd686-driver.patch' # Potentially upstreamable, needs cleanup
+        '0003-gpu-drm-panel-add-cwu50-driver.patch' # Potentially upstreamable, needs cleanup
         '0005-video-backlight-add-ocp8178-driver.patch' # Potentially upstreamable, needs cleanup
         'config'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
-md5sums=('787862593d7bf354cf1a5c37e21fc147'
-         'cc007d4bc3599bde532b25501b31fc0a'
-         '2afbb329db828d2e58918901d6e5d5c0'
+md5sums=('865f06fe13b5a92f55976c3c57d6d88a'
+         '8d709d968358bf939e0520fd168d518f'
          '3ce64f0b521cde07eeb82683a55663a0'
-         '6c33c2ca94f39c603ebca4e7901df846'
+         'cc2bf18e42874e8c51f6737e3a047a3f'
          '3203d018422505068fc22b909df871aa'
-         'c4c192ee6f72a33e790005e3a55907ff'
+         '1988166c260af1b5e3b6d20a548230dd'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '3dc88030a8f2f5a5f97266d99b149f77')
@@ -38,14 +39,14 @@ md5sums=('787862593d7bf354cf1a5c37e21fc147'
 prepare() {
   cd ${_srcname}
 
-  # add upstream patch
-  patch -Np1 -i "${srcdir}/patch-${pkgver}"
-  
-  # ClockworkPI DevTerm A06 patches
-  patch -Np1 -i "${srcdir}/0001-arm64-dts-clockworkpi-a06-dts.patch"                    # DTS
-  patch -Np1 -i "${srcdir}/0002-mfd-axp20x-add-clockworkpi-a06-power-support.patch"     # Battery/Charger
-  patch -Np1 -i "${srcdir}/0004-gpu-drm-panel-add-cwd686-driver.patch"                  # LCD
-  patch -Np1 -i "${srcdir}/0005-video-backlight-add-ocp8178-driver.patch"               # Backlight
+  # patches
+  local src
+  for src in "${source[@]}"; do
+    src="${src##*/}"
+    [[ $src = *.patch ]] || continue
+    echo "Applying patch $src..."
+    patch -Np1 <"../$src"
+  done
 
   cat "${srcdir}/config" > ./.config
 
@@ -67,7 +68,7 @@ build() {
   #make menuconfig # CLI menu for configuration
   #make nconfig # new CLI menu for configuration
   #make xconfig # X-based configuration
-  #make oldconfig # using old config from previous kernel version
+  make oldconfig # using old config from previous kernel version
   # ... or manually edit .config
 
   # Copy back our configuration (use with new kernel version)
